@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FilmDetailsComponent } from './films/films-list/film-details/film-details.component';
 import { FilmsListComponent } from './films/films-list/films-list.component';
 import { NewFilmComponent } from './films/new-film/new-film.component';
 
@@ -13,13 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FilmDetailsComponent,
     FilmsListComponent,
     NewFilmComponent
   ],
@@ -31,6 +30,7 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
+    MatDividerModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule

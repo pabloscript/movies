@@ -1,23 +1,69 @@
 <section class="film-list" *ngIf="films">
-  <h1></h1>
 
-  <mat-card class="film-card" *ngFor="let film of films; let i = index">
-    <mat-card-title></mat-card-title>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Movies</h1>
 
-    <mat-card-content>
-      <img
-        mat-card-image
-        src="">
-      <mat-card-subtitle></mat-card-subtitle>
-    </mat-card-content>
+      <p class="lead">Welcome to the best VOD service in the World!</p>
 
-    <mat-card-actions>
-      <a
-        mat-icon-button
-        (click)="toggleFilmDetails()">Show film detail
-      </a>
-    </mat-card-actions>
+    </div>
+  </div>
 
-    <app-film-details *ngIf="filmsDetailIsVisible" [film]="film"></app-film-details>
-  </mat-card>
+  <div class="container">
+    <button class="btn btn-info add-movie" (click)="toggleModal()">
+      Add movie
+      <i class="fas fa-plus">
+      </i>
+    </button>
+
+    <div class="media" *ngFor="let film of films; let i = index">
+      <div class="image-wrapper">
+        <img src="{{film.imageUrl}}" class="mr-3" alt="{{film.title}}">
+      </div>
+
+      <div class="media-body col-9">
+        <h5 class="mt-0">{{film.title}}</h5>
+
+        <span class="badge badge-pill badge-primary">Film genre: {{film.genre}}</span>
+        <span class="badge badge-pill badge-warning">Number in stock: {{film.numberInStock}}</span>
+        <span class="badge badge-pill badge-success">Daily rental rate: {{film.dailyRentalRate}}</span>
+      </div>
+
+      <div class="col-3 float-right">
+        <i class="far fa-edit"
+           style="font-size: 30px; margin-right: 10px; cursor: pointer;"
+           (click)="editFilmDetails()">
+        </i>
+        <i class="far fa-trash-alt"
+           style="font-size: 30px; cursor: pointer;"
+           (click)="deleteFilm(film.id)">
+        </i>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-dialog" role="document" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add new film</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+          (click)="toggleModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <app-new-film></app-new-film>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="overlay" *ngIf="showModal"></div>
+
 </section>
+

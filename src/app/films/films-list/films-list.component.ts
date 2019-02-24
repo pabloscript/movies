@@ -11,8 +11,8 @@ import { FilmsService } from '../../core/services/films.service';
 export class FilmsListComponent implements OnInit {
   public name = 'Films list';
   public films: Film[];
-  public filmsDetailIsVisible = false;
   public errorMessages = '';
+  showModal = false;
 
   constructor(private filmsService: FilmsService) {}
 
@@ -25,7 +25,18 @@ export class FilmsListComponent implements OnInit {
     );
   }
 
-  public toggleFilmDetails(): void {
-    this.filmsDetailIsVisible = !this.filmsDetailIsVisible;
+  editFilmDetails() {}
+
+  deleteFilm(filmId: number) {
+    this.filmsService.deleteFilm(filmId).subscribe( () => {
+      this.filmsService.getFilms().subscribe(
+        films => this.films = films,
+        error => this.errorMessages = error
+      );
+    });
+  }
+
+  toggleModal() {
+    this.showModal = !this.showModal;
   }
 }

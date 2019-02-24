@@ -19,12 +19,12 @@ export class FilmsService {
   addFilm(film: Film) {
     this.httpClient.post(this.moviesUrl, film)
     .subscribe(
-      data  => {
-        console.log('POST Request is successful ', data);
-      },
-      error  => {
-        console.log('Error', error);
-      }
+      data  => console.log('Film has been successfully added ', data),
+      error  => console.log('Error occurred while adding new film ', error)
     );
+  }
+
+  deleteFilm(filmId) {
+    return this.httpClient.delete(this.moviesUrl + '/' + filmId);
   }
 }
